@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Title</label>
+    <input formControlName="title" />
+    <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
+      Title is required
+    </div>
+  </div>
+
+  <div>
+    <label>Description</label>
+    <textarea formControlName="description"></textarea>
+  </div>
+
+  <div>
+    <label>Completed</label>
+    <input type="checkbox" formControlName="isCompleted" />
+  </div>
+
+  <div>
+    <label>Due Date</label>
+    <input type="datetime-local" formControlName="dueDate" />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+  <button type="button" (click)="router.navigate(['/tasks'])">Cancel</button>
+</form>

@@ -1,12 +1,25 @@
+// src/app/app.ts
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { CommonModule, NgIf } from '@angular/common';
+import { AuthService } from './core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, RouterLink, CommonModule, NgIf],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
 export class App {
-  protected readonly title = signal('task-management-ui');
+  title = signal('Task Management UI');
+
+  // Make router public so template can use it
+  constructor(public auth: AuthService, public router: Router) {}
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']); // navigate to login after logout
+  }
 }
