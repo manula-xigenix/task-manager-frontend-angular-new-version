@@ -1,0 +1,79 @@
+// 🎨 Variables
+$primary-color: #007bff;
+$error-color: #e74c3c;
+$card-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+.login-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+
+  .login-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: $card-shadow;
+    width: 100%;
+    max-width: 400px;
+
+    .login-title {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: #2d3436;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-size: 0.9rem;
+          color: #636e72;
+          margin-bottom: 0.3rem;
+        }
+
+        input {
+          padding: 0.7rem;
+          border: 1px solid #dfe6e9;
+          border-radius: 6px;
+          outline: none;
+          transition: border 0.3s;
+
+          &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 4px rgba($primary-color, 0.4);
+          }
+        }
+      }
+
+      .error {
+        color: $error-color;
+        font-size: 0.85rem;
+        text-align: center;
+      }
+
+      .btn-primary {
+        background: $primary-color;
+        color: white;
+        padding: 0.8rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.3s;
+
+        &:hover {
+          background: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+}

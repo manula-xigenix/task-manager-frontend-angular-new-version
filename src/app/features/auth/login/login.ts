@@ -8,8 +8,9 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
+  styleUrls: ['./login.scss'],
   standalone: true,
-  imports: [FormsModule, CommonModule]  // just FormsModule + CommonModule
+  imports: [FormsModule, CommonModule] 
 })
 export class LoginComponent {
   username = '';

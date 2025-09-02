@@ -20,6 +20,6 @@ export class App {
 
   logout() {
     this.auth.logout();
-    this.router.navigate(['/login']); // navigate to login after logout
+    this.router.navigate(['/login']); 
   }
 }
