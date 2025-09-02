@@ -1,7 +1,11 @@
-<div *ngIf="task">
+<div class="task-detail-container" *ngIf="task">
   <h2>{{ task.title }}</h2>
   <p>{{ task.description }}</p>
-  <p>Status: {{ task.isCompleted ? 'Completed' : 'Pending' }}</p>
+  <p>Status: 
+    <span [ngClass]="task.isCompleted ? 'status completed' : 'status pending'">
+      {{ task.isCompleted ? 'Completed' : 'Pending' }}
+    </span>
+  </p>
   <p>Due: {{ task.dueDate | date:'short' }}</p>
   <p *ngIf="task.user"><strong>User:</strong> {{ task.user.username }}</p>
 </div>

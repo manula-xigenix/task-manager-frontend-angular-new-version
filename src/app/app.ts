@@ -1,4 +1,3 @@
-// src/app/app.ts
 import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
@@ -13,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.scss']
 })
 export class App {
-  title = signal('Task Management UI');
+  title = signal('Task Management');
 
   // Make router public so template can use it
   constructor(public auth: AuthService, public router: Router) {}

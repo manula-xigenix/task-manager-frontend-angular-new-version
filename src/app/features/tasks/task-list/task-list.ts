@@ -9,7 +9,8 @@ import { CommonModule, NgIf, NgForOf } from '@angular/common';
   selector: 'app-task-list',
   templateUrl: './task-list.html',
   standalone: true,
-  imports: [CommonModule, NgIf, NgForOf]
+  imports: [CommonModule, NgIf, NgForOf],
+  styleUrls: ['./task-list.scss']
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];

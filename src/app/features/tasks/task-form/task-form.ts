@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
   templateUrl: './task-form.html',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
+  styleUrls: ['./task-form.scss']
 })
 export class TaskFormComponent implements OnInit {
   taskId?: string;
