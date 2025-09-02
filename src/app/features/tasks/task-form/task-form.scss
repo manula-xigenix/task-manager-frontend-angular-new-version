@@ -1,0 +1,108 @@
+.task-form-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #4f46e5; // Indigo
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #334155; // Gray-700
+      }
+
+      input, textarea {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #cbd5e1; // Gray-300
+        border-radius: 0.375rem;
+        font-size: 1rem;
+
+        &:focus {
+          outline: none;
+          border-color: #4f46e5;
+          box-shadow: 0 0 0 2px rgba(79,70,229,0.2);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+      }
+
+      .error {
+        color: #ef4444; // Red
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+
+      button {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &.save {
+          background-color: #4f46e5; // Indigo
+          color: #fff;
+          border: none;
+
+          &:hover {
+            background-color: #4338ca;
+          }
+
+          &:disabled {
+            background-color: #a5b4fc;
+            cursor: not-allowed;
+          }
+        }
+
+        &.cancel {
+          background-color: #e5e7eb; // Gray-200
+          color: #1e293b; // Gray-800
+          border: none;
+
+          &:hover {
+            background-color: #d1d5db;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .task-form-container {
+    padding: 1rem;
+  }
+}

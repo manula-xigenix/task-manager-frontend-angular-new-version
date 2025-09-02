@@ -1,0 +1,44 @@
+.task-detail-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #4f46e5; // Indigo
+  }
+
+  p {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #334155; // Gray-700
+
+    strong {
+      color: #1e293b; // Darker text for labels
+    }
+  }
+
+  .status {
+    font-weight: 600;
+
+    &.completed {
+      color: #16a34a; // Green
+    }
+
+    &.pending {
+      color: #f59e0b; // Amber
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .task-detail-container {
+    padding: 1rem;
+  }
+}

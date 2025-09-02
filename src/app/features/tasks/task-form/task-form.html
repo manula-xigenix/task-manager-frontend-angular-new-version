@@ -1,27 +1,33 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Title</label>
-    <input formControlName="title" />
-    <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched">
-      Title is required
+<div class="task-form-container">
+  <h2>{{ taskId ? 'Edit Task' : 'Create Task' }}</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Title</label>
+      <input formControlName="title" placeholder="Enter title" />
+      <div *ngIf="form.get('title')?.invalid && form.get('title')?.touched" class="error">
+        Title is required
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label>Description</label>
-    <textarea formControlName="description"></textarea>
-  </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea formControlName="description" placeholder="Enter description"></textarea>
+    </div>
 
-  <div>
-    <label>Completed</label>
-    <input type="checkbox" formControlName="isCompleted" />
-  </div>
+    <div class="form-group">
+      <label>
+        <input type="checkbox" formControlName="isCompleted" /> Completed
+      </label>
+    </div>
 
-  <div>
-    <label>Due Date</label>
-    <input type="datetime-local" formControlName="dueDate" />
-  </div>
+    <div class="form-group">
+      <label>Due Date</label>
+      <input type="datetime-local" formControlName="dueDate" />
+    </div>
 
-  <button type="submit" [disabled]="form.invalid">Save</button>
-  <button type="button" (click)="router.navigate(['/tasks'])">Cancel</button>
-</form>
+    <div class="form-actions">
+      <button type="submit" [disabled]="form.invalid" class="save">Save</button>
+      <button type="button" (click)="router.navigate(['/tasks'])" class="cancel">Cancel</button>
+    </div>
+  </form>
+</div>

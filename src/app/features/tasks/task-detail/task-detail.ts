@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './task-detail.html',
   standalone: true,
   imports: [CommonModule],
+  styleUrls: ['./task-detail.scss']
 })
 export class TaskDetailComponent implements OnInit {
   task?: Task;
