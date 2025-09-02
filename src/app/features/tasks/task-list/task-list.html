@@ -1,0 +1,33 @@
+<!-- src/app/features/tasks/task-list/task-list.html -->
+<div class="task-list-container">
+  <h2>Task List</h2>
+  <button (click)="router.navigate(['/tasks/create'])">Create New Task</button>
+
+  <table *ngIf="tasks.length > 0; else noTasks">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Completed</th>
+        <th>Due Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.isCompleted ? 'Yes' : 'No' }}</td>
+        <td>{{ task.dueDate | date:'short' }}</td>
+        <td>
+          <button (click)="editTask(task)">Edit</button>
+          <button (click)="deleteTask(task)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noTasks>
+    <p>No tasks available.</p>
+  </ng-template>
+</div>

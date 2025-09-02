@@ -1,0 +1,7 @@
+<div *ngIf="task">
+  <h2>{{ task.title }}</h2>
+  <p>{{ task.description }}</p>
+  <p>Status: {{ task.isCompleted ? 'Completed' : 'Pending' }}</p>
+  <p>Due: {{ task.dueDate | date:'short' }}</p>
+  <p *ngIf="task.user"><strong>User:</strong> {{ task.user.username }}</p>
+</div>
