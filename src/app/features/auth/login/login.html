@@ -27,9 +27,12 @@
           placeholder="Enter your password" />
       </div>
 
+      <p class="register-link">
+        Don’t have an account?
+        <a href="/signup" class="link">Register here</a>
+      </p>
       
       <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
-
       
       <button type="submit" class="btn-primary">Login</button>
     </form>

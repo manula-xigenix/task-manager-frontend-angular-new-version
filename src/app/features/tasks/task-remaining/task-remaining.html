@@ -1,15 +1,12 @@
 <div class="task-list-container">
-  <h2>Task List</h2>
-
-  <div class="actions-row">
-    <button (click)="router.navigate(['/tasks/create'])">Create New Task</button>
-
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      placeholder="Search tasks..."
-      class="search-input"
-    />
+  <h2>Remaining Task List</h2>
+  <p>Total Remaining: <strong>{{ remainingCount }}</strong></p>
+  
+  <div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      placeholder="Search tasks..." />
   </div>
 
   <table *ngIf="filteredTasks.length > 0; else noTasks">

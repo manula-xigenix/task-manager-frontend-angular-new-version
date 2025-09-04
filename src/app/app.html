@@ -3,6 +3,8 @@
 
   <nav *ngIf="auth.isLoggedIn()">
     <a routerLink="/tasks">Tasks</a>
+    <a routerLink="/completed-tasks">Completed Tasks</a>
+    <a routerLink="/remaining-tasks">Remaining Tasks</a>
     <button (click)="logout()">Logout</button>
   </nav>
 </header>
