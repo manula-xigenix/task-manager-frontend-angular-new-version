@@ -15,9 +15,12 @@
     </div>
 
     <div class="form-group">
-      <label>
-        <input type="checkbox" formControlName="isCompleted" /> Completed
-      </label>
+      <label>Status</label>
+      <select formControlName="status">
+        <option [ngValue]="TaskStatus.ToDo">To Do</option>
+        <option [ngValue]="TaskStatus.InProgress">In Progress</option>
+        <option [ngValue]="TaskStatus.Completed">Completed</option>
+      </select>
     </div>
 
     <div class="form-group">
