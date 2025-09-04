@@ -6,37 +6,46 @@ import { CommonModule, NgIf, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-task-list',
+  selector: 'app-task-remaining',
   standalone: true,
   imports: [CommonModule, NgIf, NgForOf, FormsModule],
-  templateUrl: './task-list.html',
-  styleUrls: ['./task-list.scss']
+  templateUrl: './task-remaining.html',
+  styleUrls: ['./task-remaining.scss']
 })
-export class TaskListComponent implements OnInit {
+export class TaskRemaining implements OnInit {
   tasks: Task[] = [];
   searchTerm: string = '';
+  remainingCount: number = 0; 
 
   constructor(private service: TaskService, public router: Router) {}
 
   ngOnInit() {
     this.loadTasks();
+    this.loadCount();
   }
 
   loadTasks() {
-    this.service.getAll().subscribe({
+    this.service.getRemaining().subscribe({
       next: res => this.tasks = res,
       error: err => console.error(err)
     });
   }
 
-  get filteredTasks() {
-    if (!this.searchTerm.trim()) return this.tasks;
+  loadCount() {
+    this.service.getRemainingCount().subscribe({
+      next: res => this.remainingCount = res,
+      error: err => console.error(err)
+    });
+  }
 
+  get filteredTasks() {
+    if (!this.searchTerm.trim()) {
+      return this.tasks;
+    }
     const lower = this.searchTerm.toLowerCase();
-    return this.tasks.filter(
-      t =>
-        t.title.toLowerCase().includes(lower) ||
-        t.description!.toLowerCase().includes(lower)
+    return this.tasks.filter(t =>
+      t.title.toLowerCase().includes(lower) ||
+      t.description!.toLowerCase().includes(lower)
     );
   }
 
@@ -47,6 +56,7 @@ export class TaskListComponent implements OnInit {
   deleteTask(task: Task) {
     this.service.delete(task.id!).subscribe(() => {
       this.loadTasks();
+      this.loadCount(); 
     });
   }
 }
