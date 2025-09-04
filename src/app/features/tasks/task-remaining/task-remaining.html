@@ -1,12 +1,9 @@
 <div class="task-list-container">
   <h2>Remaining Task List</h2>
   <p>Total Remaining: <strong>{{ remainingCount }}</strong></p>
-  
+
   <div class="search-container">
-    <input 
-      type="text" 
-      [(ngModel)]="searchTerm" 
-      placeholder="Search tasks..." />
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search tasks..." />
   </div>
 
   <table *ngIf="filteredTasks.length > 0; else noTasks">
@@ -23,7 +20,7 @@
       <tr *ngFor="let task of filteredTasks">
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
-        <td>{{ task.isCompleted ? 'Yes' : 'No' }}</td>
+        <td>{{ isCompleted(task) ? 'Yes' : 'No' }}</td>
         <td>{{ task.dueDate | date:'short' }}</td>
         <td>
           <button (click)="editTask(task)">Edit</button>

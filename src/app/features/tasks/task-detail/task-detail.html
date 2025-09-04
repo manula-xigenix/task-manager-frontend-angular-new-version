@@ -2,8 +2,8 @@
   <h2>{{ task.title }}</h2>
   <p>{{ task.description }}</p>
   <p>Status: 
-    <span [ngClass]="task.isCompleted ? 'status completed' : 'status pending'">
-      {{ task.isCompleted ? 'Completed' : 'Pending' }}
+    <span [ngClass]="getStatusClass(task)">
+      {{ getStatusLabel(task) }}
     </span>
   </p>
   <p>Due: {{ task.dueDate | date:'short' }}</p>

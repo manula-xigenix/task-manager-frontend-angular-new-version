@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../../core/services/task.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Task } from '../../../core/models/task.model';
+import { Task, TaskStatus } from '../../../core/models/task.model';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 export class TaskFormComponent implements OnInit {
   taskId?: string;
   form!: FormGroup;
+  TaskStatus = TaskStatus;
 
   constructor(
     private service: TaskService,
@@ -29,13 +30,18 @@ export class TaskFormComponent implements OnInit {
     this.form = this.fb.group({
       title: ['', Validators.required],
       description: [''],
-      isCompleted: [false],
+      status: [TaskStatus.ToDo],  
       dueDate: ['']
     });
 
     if (this.taskId) {
       this.service.getById(this.taskId).subscribe((task: Task) => {
-        this.form.patchValue(task);
+        this.form.patchValue({
+          title: task.title,
+          description: task.description,
+          status: task.status,
+          dueDate: task.dueDate
+        });
       });
     }
   }

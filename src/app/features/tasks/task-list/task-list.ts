@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../../core/services/task.service';
-import { Task } from '../../../core/models/task.model';
+import { Task, TaskStatus } from '../../../core/models/task.model';
 import { Router } from '@angular/router';
 import { CommonModule, NgIf, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
   searchTerm: string = '';
+  TaskStatus = TaskStatus; // expose enum to template
 
   constructor(private service: TaskService, public router: Router) {}
 
@@ -45,8 +46,19 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(task: Task) {
-    this.service.delete(task.id!).subscribe(() => {
-      this.loadTasks();
-    });
+    this.service.delete(task.id!).subscribe(() => this.loadTasks());
+  }
+
+  isCompleted(task: Task): boolean {
+    return task.status === TaskStatus.Completed;
+  }
+
+  getStatusLabel(task: Task): string {
+    switch (task.status) {
+      case TaskStatus.ToDo: return 'To Do';
+      case TaskStatus.InProgress: return 'In Progress';
+      case TaskStatus.Completed: return 'Completed';
+      default: return '';
+    }
   }
 }

@@ -14,22 +14,22 @@ export class TaskService {
     return this.http.get<Task[]>(this.api);
   }
 
-  /** Get only remaining (not completed) tasks */
+  /** Get only remaining tasks (status != Completed) */
   getRemaining(): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.api}/remaining`);
   }
 
-  /** Get only completed tasks */
+  /** Get only completed tasks (status == Completed) */
   getCompleted(): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.api}/completed`);
   }
 
-  /** Get only completed tasks count */
+  /** Count completed tasks */
   getCompletedCount(): Observable<number> {
-  return this.http.get<number>(`${this.api}/completed/count`);
+    return this.http.get<number>(`${this.api}/completed/count`);
   }
 
-  /** Get only Remaining tasks count */
+  /** Count remaining tasks */
   getRemainingCount(): Observable<number> {
     return this.http.get<number>(`${this.api}/remaining/count`);
   }

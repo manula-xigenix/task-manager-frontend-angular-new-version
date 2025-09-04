@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../../core/services/task.service';
-import { Task } from '../../../core/models/task.model';
+import { Task, TaskStatus } from '../../../core/models/task.model';
 import { Router } from '@angular/router';
 import { CommonModule, NgIf, NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
 export class TaskCompleted implements OnInit {
   tasks: Task[] = [];
   searchTerm: string = '';
-  completedCount: number = 0;  
+  completedCount: number = 0;
+  TaskStatus = TaskStatus; 
 
   constructor(private service: TaskService, public router: Router) {}
 
@@ -39,14 +40,17 @@ export class TaskCompleted implements OnInit {
   }
 
   get filteredTasks() {
-    if (!this.searchTerm.trim()) {
-      return this.tasks;
-    }
+    if (!this.searchTerm.trim()) return this.tasks;
     const lower = this.searchTerm.toLowerCase();
-    return this.tasks.filter(t =>
-      t.title.toLowerCase().includes(lower) ||
-      t.description!.toLowerCase().includes(lower)
+    return this.tasks.filter(
+      t =>
+        t.title.toLowerCase().includes(lower) ||
+        t.description!.toLowerCase().includes(lower)
     );
+  }
+
+  isCompleted(task: Task) {
+    return task.status === TaskStatus.Completed;
   }
 
   editTask(task: Task) {
@@ -56,7 +60,7 @@ export class TaskCompleted implements OnInit {
   deleteTask(task: Task) {
     this.service.delete(task.id!).subscribe(() => {
       this.loadTasks();
-      this.loadCount(); 
+      this.loadCount();
     });
   }
 }
